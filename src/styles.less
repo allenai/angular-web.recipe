@@ -1,0 +1,33 @@
+body {
+  background: #fff;
+  font-family: 'Open Sans', 'Helvetica Neue', helvetica, arial, sans-serif;
+}
+
+#app-loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -17px -17px 0 0;
+}
+
+#app-content,
+#app-loading {
+  transition: opacity 500ms linear;
+}
+
+#app-content {
+  transition-duration: 1000ms;
+}
+
+#app-content {
+  opacity: 0;
+}
+
+.loaded {
+  #app-loading {
+    opacity: 0;
+  }
+  #app-content {
+    opacity: 1;
+  }
+}

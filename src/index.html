@@ -1,0 +1,16 @@
+<!DOCTYPE html><html>
+  <head>
+    <title>angular-web.recipe</title>
+    <link rel="stylesheet" type="text/css" href="{{cache-break:styles.css}}">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
+  </head>
+  <body ng-controller="IndexController" ng-class="{ loaded: loaded }">
+    <img id="app-loading" src="{{cache-break:assets/svg/loading.svg}}"
+        width="64" height="64">
+    <div id="app-content">
+      <h1 ng-if="loaded">{{message}}</h1>
+      <p>{{intro}}</p>
+    </div>
+    <script src="{{cache-break:main.js}}"></script>
+  </body>
+</html>
