@@ -46,12 +46,12 @@ gulp.task('less', [ 'clean' ], function() {
       // If the biscuit dev server is executing the build, output an error in
       // a format that biscuit can parse and understand (JSON)
       if(gutil.env.baking) {
-        gutil.log(
+        console.error(
           new butil.GulpTaskError(
               'less',
               err.message,
               err.filename,
-              err.line,
+              err.lineNumber,
               err.extract.join('\n')
             ).report()
         );
@@ -75,13 +75,13 @@ gulp.task('js', [ 'clean' ], function() {
       // If the biscuit dev server is executing the build, output an error in
       // a format that biscuit can parse and understand (JSON)
       if(gutil.env.baking) {
-        gutil.log(
+        console.error(
           new butil.GulpTaskError(
-              'less',
+              'js',
               err.message,
               err.filename,
-              err.line,
-              err.extract.join('\n')
+              err.lineNumber,
+              err.stack
             ).report()
         );
       } else {
