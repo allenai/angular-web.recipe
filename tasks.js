@@ -11,15 +11,15 @@ var gutil = require('gulp-util');
 var util = require('util');
 var butil = require('biscuit-util');
 
-var recipe = new butil.Recipe(__dirname, require('./recipe'));
+var paths = new butil.Paths(__dirname, require('./paths'));
 
 /**
  * Removes all build artifacts.
  */
 gulp.task('clean', function() {
   gutil.log(util.format('Removing artifacts from %s',
-      gutil.colors.magenta(recipe.build)));
-  return gulp.src(recipe.build + '/**/*', { read: false })
+      gutil.colors.magenta(paths.build)));
+  return gulp.src(paths.build + '/**/*', { read: false })
       .pipe(rimraf());
 });
 
@@ -28,10 +28,10 @@ gulp.task('clean', function() {
  */
 gulp.task('html', [ 'clean', 'js', 'less', 'assets' ], function() {
   gutil.log(util.format('Copying %s to %s',
-      gutil.colors.magenta(recipe.html), gutil.colors.magenta(recipe.build)));
-  return gulp.src(recipe.html)
+      gutil.colors.magenta(paths.html), gutil.colors.magenta(paths.build)));
+  return gulp.src(paths.html)
       .pipe(cb())
-      .pipe(gulp.dest(recipe.build));
+      .pipe(gulp.dest(paths.build));
 });
 
 
@@ -40,8 +40,8 @@ gulp.task('html', [ 'clean', 'js', 'less', 'assets' ], function() {
  */
 gulp.task('less', [ 'clean' ], function() {
   gutil.log(util.format('Compiling %s to %s',
-      gutil.colors.magenta(recipe.less), gutil.colors.magenta(recipe.build)));
-  return gulp.src(recipe.less)
+      gutil.colors.magenta(paths.less), gutil.colors.magenta(paths.build)));
+  return gulp.src(paths.less)
     .pipe(plumber(function(err) {
       // If the biscuit dev server is executing the build, output an error in
       // a format that biscuit can parse and understand (JSON)
@@ -61,7 +61,7 @@ gulp.task('less', [ 'clean' ], function() {
     }))
     .pipe(less({ compress: true }))
     .pipe(autoprefixer('last 2 versions'))
-    .pipe(gulp.dest(recipe.build));
+    .pipe(gulp.dest(paths.build));
 });
 
 /**
@@ -69,8 +69,8 @@ gulp.task('less', [ 'clean' ], function() {
  */
 gulp.task('js', [ 'clean' ], function() {
   gutil.log(util.format('Compiling %s to %s',
-      gutil.colors.magenta(recipe.js), gutil.colors.magenta(recipe.build)));
-  return gulp.src(recipe.js)
+      gutil.colors.magenta(paths.js), gutil.colors.magenta(paths.build)));
+  return gulp.src(paths.js)
     .pipe(plumber(function(err) {
       // If the biscuit dev server is executing the build, output an error in
       // a format that biscuit can parse and understand (JSON)
@@ -90,7 +90,7 @@ gulp.task('js', [ 'clean' ], function() {
     }))
     .pipe(browserify())
     .pipe(uglify())
-    .pipe(gulp.dest(recipe.build));
+    .pipe(gulp.dest(paths.build));
 });
 
 /**
@@ -98,7 +98,7 @@ gulp.task('js', [ 'clean' ], function() {
  */
 gulp.task('assets', [ 'clean' ], function() {
   gutil.log(util.format('Copying %s to %s',
-      gutil.colors.magenta(recipe.assets), gutil.colors.magenta(recipe.build)));
-  return gulp.src(recipe.assets, { base: recipe.src })
-      .pipe(gulp.dest(recipe.build));
+      gutil.colors.magenta(paths.assets), gutil.colors.magenta(paths.build)));
+  return gulp.src(paths.assets, { base: paths.src })
+      .pipe(gulp.dest(paths.build));
 });
