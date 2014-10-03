@@ -1,5 +1,5 @@
 /**
- * The quintessential Biscuit.  Everything you need for a scrumptious serving of
+ * The quintessential Flapjack.  Everything you need for a scrumptious serving of
  * HTML, CSS and Javascript.
  *
  * @property {string} var     Path to to the directory where runtime data is stored.

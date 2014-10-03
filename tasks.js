@@ -9,9 +9,9 @@ var rimraf = require('gulp-rimraf');
 var gutil = require('gulp-util');
 
 var util = require('util');
-var butil = require('biscuit-util');
+var futil = require('flapjack-util');
 
-var paths = new butil.Paths(__dirname, require('./paths'));
+var paths = new futil.Paths(__dirname, require('./paths'));
 
 /**
  * Removes all build artifacts.
@@ -47,7 +47,7 @@ gulp.task('less', [ 'clean' ], function() {
       // a format that biscuit can parse and understand (JSON)
       if(gutil.env.baking) {
         console.error(
-          new butil.GulpTaskError(
+          new futil.GulpTaskError(
               'less',
               err.message,
               err.filename,
@@ -76,7 +76,7 @@ gulp.task('js', [ 'clean' ], function() {
       // a format that biscuit can parse and understand (JSON)
       if(gutil.env.baking) {
         console.error(
-          new butil.GulpTaskError(
+          new futil.GulpTaskError(
               'js',
               err.message,
               err.filename,
