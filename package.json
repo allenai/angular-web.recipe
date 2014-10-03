@@ -2,7 +2,7 @@
   "name": "angular-web.recipe",
   "repository": "allenai/angular-web.recipe",
   "devDependencies": {
-    "flapjack-util": "^0.1.7",
+    "flapjack-util": "^0.2.0",
     "gulp": "^3.8.7",
     "gulp-autoprefixer": "^1.0.0",
     "gulp-browserify": "^0.5.0",
