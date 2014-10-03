@@ -43,9 +43,9 @@ gulp.task('less', [ 'clean' ], function() {
       gutil.colors.magenta(paths.less), gutil.colors.magenta(paths.build)));
   return gulp.src(paths.less)
     .pipe(plumber(function(err) {
-      // If the biscuit dev server is executing the build, output an error in
-      // a format that biscuit can parse and understand (JSON)
-      if(gutil.env.baking) {
+      // If the flapjack dev server is executing the build, output an error in
+      // a format that flapjack can parse and understand (JSON)
+      if(gutil.env.flapjack) {
         console.error(
           new futil.GulpTaskError(
               'less',
@@ -72,9 +72,9 @@ gulp.task('js', [ 'clean' ], function() {
       gutil.colors.magenta(paths.js), gutil.colors.magenta(paths.build)));
   return gulp.src(paths.js)
     .pipe(plumber(function(err) {
-      // If the biscuit dev server is executing the build, output an error in
-      // a format that biscuit can parse and understand (JSON)
-      if(gutil.env.baking) {
+      // If the flapjack dev server is executing the build, output an error in
+      // a format that flapjack can parse and understand (JSON)
+      if(gutil.env.flapjack) {
         console.error(
           new futil.GulpTaskError(
               'js',
