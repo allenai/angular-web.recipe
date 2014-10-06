@@ -43,21 +43,14 @@ gulp.task('less', [ 'clean' ], function() {
       gutil.colors.magenta(paths.less), gutil.colors.magenta(paths.build)));
   return gulp.src(paths.less)
     .pipe(plumber(function(err) {
-      // If the flapjack dev server is executing the build, output an error in
-      // a format that flapjack can parse and understand (JSON)
-      if(gutil.env.flapjack) {
-        console.error(
-          new futil.GulpTaskError(
-              'less',
-              err.message,
-              err.filename,
-              err.lineNumber,
-              err.extract.join('\n')
-            ).report()
-        );
-      } else {
-        gutil.log(err.toString());
-      }
+      new futil.GulpTaskError(
+          'less',
+          err.message,
+          err.filename,
+          err.lineNumber,
+          err.extract.join('\n')
+        ).send();
+      gutil.log(err.toString());
     }))
     .pipe(less({ compress: true }))
     .pipe(autoprefixer('last 2 versions'))
@@ -72,21 +65,14 @@ gulp.task('js', [ 'clean' ], function() {
       gutil.colors.magenta(paths.js), gutil.colors.magenta(paths.build)));
   return gulp.src(paths.js)
     .pipe(plumber(function(err) {
-      // If the flapjack dev server is executing the build, output an error in
-      // a format that flapjack can parse and understand (JSON)
-      if(gutil.env.flapjack) {
-        console.error(
-          new futil.GulpTaskError(
-              'js',
-              err.message,
-              err.filename,
-              err.lineNumber,
-              err.stack
-            ).report()
-        );
-      } else {
-        gutil.log(err.toString());
-      }
+      new futil.GulpTaskError(
+          'js',
+          err.message,
+          err.filename,
+          err.lineNumber,
+          err.stack
+        ).send();
+      gutil.log(err.toString());
     }))
     .pipe(browserify())
     .pipe(uglify())
